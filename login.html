@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - FitneZ</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="page-login" class="page active">
+      <div class="login-page">
+        <div class="login-box">
+          <div class="card">
+            <h1>FitneZ</h1>
+            <p>Fitness Management System</p>
+            <div class="row">
+              <div>
+                <label>Username</label>
+                <input
+                  id="login-user"
+                  type="text"
+                  placeholder="Enter username"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div>
+                <label>Password</label>
+                <input
+                  id="login-pass"
+                  type="password"
+                  placeholder="Enter password"
+                />
+              </div>
+            </div>
+            <button
+              class="btn btn-primary"
+              style="width: 100%; margin-top: 6px"
+              onclick="App.login()"
+            >
+              Sign In
+            </button>
+            <p class="hint" style="text-align: center; margin-top: 12px">
+              Demo — admin / admin123 &nbsp;|&nbsp; trainer / train123
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="toast"></div>
+    <script src="script.js"></script>
+  </body>
+</html>

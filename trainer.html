@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trainer Dashboard - FitneZ</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="page-trainer" class="page active">
+      <div class="app">
+        <header class="mobile-header">
+          <button class="hamburger" onclick="UI.toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="header-logo">⚡ FitneZ</div>
+          <div class="header-spacer"></div>
+        </header>
+        <aside class="sidebar">
+          <div class="sidebar-header">
+            <div class="logo">⚡ FitneZ</div>
+          </div>
+          <nav>
+            <div
+              class="nav-item active"
+              data-section="workouts"
+              onclick="Router.tab('workouts')"
+            >
+              👥 My Clients
+            </div>
+            <div
+              class="nav-item"
+              data-section="exercise"
+              onclick="Router.tab('exercise')"
+            >
+              📈 Client Training
+            </div>
+            <div
+              class="nav-item"
+              data-section="nutrition"
+              onclick="Router.tab('nutrition')"
+            >
+              💰 My Earnings
+            </div>
+            <div
+              class="nav-item"
+              data-section="meals"
+              onclick="Router.tab('meals')"
+            >
+              🍽️ Client Meal Plans
+            </div>
+          </nav>
+          <div class="sidebar-foot">
+            <p class="hint">Logged in as Trainer</p>
+            <button
+              class="btn btn-ghost"
+              style="width: 100%"
+              onclick="App.logout()"
+            >
+              Logout
+            </button>
+          </div>
+        </aside>
+
+        <main class="main">
+          <div id="trainer-workouts" class="section active">
+            <h2>My Clients & Programs</h2>
+            <p class="hint" style="margin-bottom: 16px">
+              Monitoring workout plans for hired clients
+            </p>
+            <div id="workout-plans-list"></div>
+          </div>
+
+          <div id="trainer-exercise" class="section">
+            <h2>Exercise Tracking</h2>
+            <p class="hint" style="margin-bottom: 16px">
+              Monitoring performance records for hired clients (read-only)
+            </p>
+            <div
+              class="grid g4"
+              id="exercise-stats-grid"
+              style="margin-bottom: 14px"
+            ></div>
+            <div class="card" style="padding: 0">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Member</th>
+                    <th>Exercise</th>
+                    <th>Sets</th>
+                    <th>Reps</th>
+                    <th>Weight (kg)</th>
+                    <th>Date</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody id="exercise-log-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="trainer-nutrition" class="section">
+            <h2>Training Session Earnings</h2>
+            <p class="hint" style="margin-bottom: 16px">
+              Income from client bookings and sessions
+            </p>
+            <div
+              class="grid g4"
+              id="trainer-earnings-grid"
+              style="margin-bottom: 14px"
+            ></div>
+            <div class="card" style="padding: 0">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Client</th>
+                    <th>Date</th>
+                    <th>Duration</th>
+                    <th>Amount (Rp)</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="trainer-earnings-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="trainer-meals" class="section">
+            <h2>Meal Plans</h2>
+            <p class="hint" style="margin-bottom: 16px">
+              Monitoring nutrition schedules for hired clients (read-only)
+            </p>
+            <div id="meal-plans-list"></div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div id="toast"></div>
+    <script src="script.js"></script>
+  </body>
+</html>

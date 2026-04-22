@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - FitneZ</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="page-admin" class="page active">
+      <div class="app">
+        <header class="mobile-header">
+          <button class="hamburger" onclick="UI.toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="header-logo">FitneZ</div>
+          <div class="header-spacer"></div>
+        </header>
+        <aside class="sidebar">
+          <div class="logo">FitneZ</div>
+          <nav>
+            <div
+              class="nav-item active"
+              data-section="overview"
+              onclick="Router.tab('overview')"
+            >
+              📊 Overview
+            </div>
+            <div
+              class="nav-item"
+              data-section="auth-logs"
+              onclick="Router.tab('auth-logs')"
+            >
+              👥 Auth Logs
+            </div>
+            <div
+              class="nav-item"
+              data-section="payments"
+              onclick="Router.tab('payments')"
+            >
+              💳 Payments
+            </div>
+            <div
+              class="nav-item"
+              data-section="attendance"
+              onclick="Router.tab('attendance')"
+            >
+              📋 Attendance
+            </div>
+          </nav>
+          <div class="sidebar-foot">
+            <p class="hint">Logged in as Admin</p>
+            <button
+              class="btn btn-ghost"
+              style="width: 100%"
+              onclick="App.logout()"
+            >
+              Logout
+            </button>
+          </div>
+        </aside>
+
+        <main class="main">
+          <div id="admin-overview" class="section active">
+            <h2>Dashboard Overview</h2>
+            <p class="hint" style="margin-bottom: 16px">
+              System summary at a glance
+            </p>
+            <div class="grid g4" id="admin-stats-grid"></div>
+            <div class="grid g2 mt">
+              <div class="card">
+                <h3>Recent Auth Activity</h3>
+                <div id="admin-recent-auth"></div>
+              </div>
+              <div class="card">
+                <h3>Revenue Summary</h3>
+                <div id="admin-pay-summary"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="admin-auth-logs" class="section">
+            <div class="flex sb" style="margin-bottom: 16px">
+              <div>
+                <h2>Login &amp; Registration</h2>
+                <p class="hint">All member auth events</p>
+              </div>
+              <div class="flex">
+                <input
+                  id="search-auth"
+                  placeholder="Search name…"
+                  style="width: 180px"
+                  oninput="Admin.filterAuth()"
+                />
+                <select id="filter-auth-type" onchange="Admin.filterAuth()">
+                  <option value="">All Types</option>
+                  <option value="login">Login</option>
+                  <option value="register">Register</option>
+                </select>
+                <select id="filter-auth-status" onchange="Admin.filterAuth()">
+                  <option value="">All Status</option>
+                  <option value="success">Success</option>
+                  <option value="failed">Failed</option>
+                </select>
+                <button
+                  class="btn btn-ghost"
+                  onclick="Admin.exportCSV('authLogs', 'auth-logs.csv')"
+                >
+                  ⬇ Export
+                </button>
+              </div>
+            </div>
+            <div class="card" style="padding: 0">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Device</th>
+                    <th>Timestamp</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="auth-logs-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="admin-payments" class="section">
+            <div class="flex sb" style="margin-bottom: 16px">
+              <div>
+                <h2>Payment Reports</h2>
+                <p class="hint">
+                  Member billing, renewals &amp; trainer bookings
+                </p>
+              </div>
+              <div class="flex">
+                <input
+                  id="search-pay"
+                  placeholder="Search member…"
+                  style="width: 180px"
+                  oninput="Admin.filterPay()"
+                />
+                <select id="filter-pay-category" onchange="Admin.filterPay()">
+                  <option value="">All Categories</option>
+                  <option value="membership">Membership New</option>
+                  <option value="membership">Membership Renewal</option>
+                  <option value="trainer_rental">Trainer Rental</option>
+                  <option value="equipment">Equipment Rental</option>
+                  <option value="other">Other</option>
+                </select>
+                <select id="filter-pay-status" onchange="Admin.filterPay()">
+                  <option value="">All Status</option>
+                  <option value="paid">Paid</option>
+                  <option value="unpaid">Unpaid</option>
+                  <option value="pending">Pending</option>
+                </select>
+                <button
+                  class="btn btn-primary"
+                  onclick="UI.toggle('add-payment-form')"
+                >
+                  + Add
+                </button>
+                <button
+                  class="btn btn-ghost"
+                  onclick="Admin.exportCSV('payments', 'payments.csv')"
+                >
+                  ⬇ Export
+                </button>
+              </div>
+            </div>
+            <div
+              class="grid g4"
+              id="pay-stats-grid"
+              style="margin-bottom: 14px"
+            ></div>
+            <div class="card" style="padding: 0">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Member</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Due</th>
+                    <th>Method</th>
+                    <th>Status</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="payments-body"></tbody>
+              </table>
+            </div>
+
+            <div
+              id="add-payment-form"
+              class="card"
+              style="display: none; margin-top: 14px"
+            >
+              <h3>Add Payment Record</h3>
+              <div class="row">
+                <div>
+                  <label>Member Name</label
+                  ><input id="pay-name" placeholder="Full name" />
+                </div>
+                <div>
+                  <label>Category</label>
+                  <select id="pay-category">
+                    <option value="membership">Membership New</option>
+                    <option value="membership">Membership Renewal</option>
+                    <option value="trainer_rental">Trainer Rental</option>
+                    <option value="equipment">Equipment Rental</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div>
+                  <label>Amount (Rp)</label
+                  ><input id="pay-amount" type="number" placeholder="175000" />
+                </div>
+                <div>
+                  <label>Status</label>
+                  <select id="pay-status-sel">
+                    <option value="paid">Paid</option>
+                    <option value="unpaid">Unpaid</option>
+                    <option value="pending">Pending</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div>
+                  <label>Method</label>
+                  <select id="pay-method">
+                    <option>Transfer Bank</option>
+                    <option>QRIS</option>
+                    <option>E-Wallet</option>
+                    <option>Cash</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Due Date</label><input id="pay-due" type="date" />
+                </div>
+              </div>
+              <div class="flex mt">
+                <button class="btn btn-primary" onclick="Admin.savePay()">
+                  Save
+                </button>
+                <button
+                  class="btn btn-ghost"
+                  onclick="UI.hide('add-payment-form')"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="admin-attendance" class="section">
+            <div class="flex sb" style="margin-bottom: 16px">
+              <div>
+                <h2>Attendance Reports</h2>
+                <p class="hint">Member check-in records</p>
+              </div>
+              <div class="flex">
+                <input
+                  id="search-att"
+                  placeholder="Search member…"
+                  style="width: 180px"
+                  oninput="Admin.filterAtt()"
+                />
+                <select id="filter-att-status" onchange="Admin.filterAtt()">
+                  <option value="">All Status</option>
+                  <option value="present">Present</option>
+                  <option value="absent">Absent</option>
+                  <option value="late">Late</option>
+                </select>
+                <button
+                  class="btn btn-primary"
+                  onclick="UI.toggle('mark-att-form')"
+                >
+                  + Mark
+                </button>
+                <button
+                  class="btn btn-ghost"
+                  onclick="Admin.exportCSV('attendance', 'attendance.csv')"
+                >
+                  ⬇ Export
+                </button>
+              </div>
+            </div>
+            <div
+              class="grid g4"
+              id="att-stats-grid"
+              style="margin-bottom: 14px"
+            ></div>
+            <div class="card" style="padding: 0">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Member</th>
+                    <th>Date</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Activity</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="attendance-body"></tbody>
+              </table>
+            </div>
+
+            <div
+              id="mark-att-form"
+              class="card"
+              style="display: none; margin-top: 14px"
+            >
+              <h3>Mark Attendance</h3>
+              <div class="row">
+                <div>
+                  <label>Member Name</label
+                  ><input id="att-name" placeholder="Full name" />
+                </div>
+                <div>
+                  <label>Activity</label>
+                  <select id="att-activity">
+                    <option>Weight Training</option>
+                    <option>Cardio</option>
+                    <option>HIIT</option>
+                    <option>Yoga</option>
+                    <option>Zumba</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div>
+                  <label>Check In</label><input id="att-in" type="time" />
+                </div>
+                <div>
+                  <label>Check Out</label><input id="att-out" type="time" />
+                </div>
+                <div>
+                  <label>Status</label>
+                  <select id="att-status-sel">
+                    <option value="present">Present</option>
+                    <option value="late">Late</option>
+                    <option value="absent">Absent</option>
+                  </select>
+                </div>
+              </div>
+              <div class="flex mt">
+                <button class="btn btn-primary" onclick="Admin.saveAtt()">
+                  Save
+                </button>
+                <button
+                  class="btn btn-ghost"
+                  onclick="UI.hide('mark-att-form')"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div id="toast"></div>
+    <script src="script.js"></script>
+  </body>
+</html>

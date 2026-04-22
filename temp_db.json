@@ -1,0 +1,93 @@
+{
+  "authLogs": [
+    {
+      "id": 1,
+      "name": "trainer",
+      "type": "login",
+      "device": "Mobile",
+      "timestamp": "25-2-2026 08.15",
+      "status": "success"
+    },
+    {
+      "id": 2,
+      "name": "Arya Wibowo",
+      "type": "login",
+      "device": "Mobile",
+      "timestamp": "25-2-2026 08.32",
+      "status": "success"
+    },
+    {
+      "id": 1774812456562,
+      "name": "admin",
+      "type": "login",
+      "device": "Desktop",
+      "timestamp": "30/3/2026, 02.27.36",
+      "status": "success"
+    }
+  ],
+  "payments": [
+    {
+      "id": 1,
+      "member": "Arya Wibowo",
+      "category": "membership",
+      "amount": 350000,
+      "date": "2026-03-01",
+      "due": "2026-02-01",
+      "method": "Transfer Bank",
+      "status": "paid"
+    },
+    {
+      "id": 2,
+      "member": "Siti Rahayu",
+      "category": "trainer_rental",
+      "amount": 250000,
+      "date": "2026-03-01",
+      "due": "2026-02-01",
+      "method": "QRIS",
+      "status": "paid"
+    }
+  ],
+  "attendance": [
+    {
+      "id": 1,
+      "member": "Arya Wibowo",
+      "date": "2026-02-07",
+      "checkIn": "",
+      "checkOut": "09:00",
+      "activity": "Weight Training",
+      "status": "present"
+    }
+  ],
+  "exercises": [
+    {
+      "id": 1,
+      "member": "Arya Wibowo",
+      "exercise": "Bench Press",
+      "sets": 4,
+      "reps": 10,
+      "weight": 60,
+      "date": "2025-06-01",
+      "notes": "Good form"
+    }
+  ],
+  "earnings": [
+    {
+      "id": 1,
+      "client": "Arya Wibowo",
+      "date": "2026-02-20",
+      "duration": "90 min",
+      "amount": 250000,
+      "status": "paid"
+    }
+  ],
+  "clients": [
+    {
+      "id": 1,
+      "name": "Arya Wibowo",
+      "program": "Muscle Gain",
+      "goal": "Increase muscle mass by 5 kg",
+      "sessions": 12,
+      "status": "active"
+    }
+  ]
+}
