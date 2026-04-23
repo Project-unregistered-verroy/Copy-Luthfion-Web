@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - FitMerge</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="navbar-brand">⚡ FitMerge</a>
+  <button class="navbar-toggle" onclick="toggleNav()">☰</button>
+  <menu class="navbar-menu" id="navbarMenu">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="workout.html">Workout</a>
+    <a href="gizi.html">Gizi</a>
+    <a href="mealplan.html">Meal Plan</a>
+    <a href="trainer.html">Trainer</a>
+    <a href="attendance.html">Absensi</a>
+    <a href="payment.html">Pembayaran</a>
+    <a href="notifikasi.html">Notifikasi</a>
+    <a href="chat.html">Chat</a>
+    <a href="profile.html">Profil</a>
+    <a href="admin.html">Admin</a>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+  </menu>
+</nav>
+
+<main>
+  <header class="page-header">
+    <h1 id="dashWelcome">Dashboard</h1>
+    <p>Ringkasan aktivitas fitness-mu hari ini.</p>
+  </header>
+
+  <section class="grid-4">
+    <article class="stat primary">
+      <p class="stat-icon">🏋️</p>
+      <p class="stat-value" id="dashWorkouts">0</p>
+      <p class="stat-label">Total Latihan</p>
+    </article>
+    <article class="stat primary">
+      <p class="stat-icon">🔥</p>
+      <p class="stat-value" id="dashCalories">0</p>
+      <p class="stat-label">Kalori Hari Ini</p>
+    </article>
+    <article class="stat">
+      <p class="stat-icon">🎯</p>
+      <p class="stat-value" id="dashLimit">0</p>
+      <p class="stat-label">Target Kalori</p>
+    </article>
+    <article class="stat">
+      <p class="stat-icon">👥</p>
+      <p class="stat-value" id="dashBookings">0</p>
+      <p class="stat-label">Booking Trainer</p>
+    </article>
+  </section>
+
+  <section class="grid-3" style="margin-top:1.5rem">
+    <article class="feature-card">
+      <p class="feature-icon">💪</p>
+      <h3>Mulai Latihan</h3>
+      <p>Atur jadwal workout baru dan tracking performamu.</p>
+      <button onclick="location.href='workout.html'">Buka Workout</button>
+    </article>
+    <article class="feature-card">
+      <p class="feature-icon">🥗</p>
+      <h3>Catat Makanan</h3>
+      <p>Log makanan harian dan pantau kalori yang masuk.</p>
+      <button onclick="location.href='mealplan.html'">Catat Sekarang</button>
+    </article>
+    <article class="feature-card">
+      <p class="feature-icon">🔔</p>
+      <h3>Jadwal Kamu</h3>
+      <p>Lihat notifikasi jadwal latihan dan sesi trainer.</p>
+      <button onclick="location.href='notifikasi.html'">Lihat Jadwal</button>
+    </article>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 FitMerge</p>
+</footer>
+
+<script src="../js/navbar.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  requireLogin();
+  renderDashboard();
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Absensi - FitMerge</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="navbar-brand">⚡ FitMerge</a>
+  <button class="navbar-toggle" onclick="toggleNav()">☰</button>
+  <menu class="navbar-menu" id="navbarMenu">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="workout.html">Workout</a>
+    <a href="gizi.html">Gizi</a>
+    <a href="mealplan.html">Meal Plan</a>
+    <a href="trainer.html">Trainer</a>
+    <a href="attendance.html">Absensi</a>
+    <a href="payment.html">Pembayaran</a>
+    <a href="notifikasi.html">Notifikasi</a>
+    <a href="chat.html">Chat</a>
+    <a href="profile.html">Profil</a>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+  </menu>
+</nav>
+
+<main>
+  <header class="page-header">
+    <h1>📋 Absensi Member & Trainer</h1>
+    <p>Catat kehadiran dengan detail aktivitas dan status.</p>
+  </header>
+
+  <form id="attForm" class="card" onsubmit="event.preventDefault(); saveAttendance();">
+    <fieldset>
+      <legend>Catat Kehadiran</legend>
+      <section class="form-row">
+        <span>
+          <label for="attName">Nama</label>
+          <input id="attName" type="text" placeholder="Nama lengkap" required>
+        </span>
+        <span>
+          <label for="attDate">Tanggal</label>
+          <input id="attDate" type="date" required>
+        </span>
+      </section>
+      <section class="form-row">
+        <span>
+          <label for="attActivity">Aktivitas</label>
+          <select id="attActivity">
+            <option>Weight Training</option>
+            <option>Cardio</option>
+            <option>HIIT</option>
+            <option>Yoga</option>
+            <option>Zumba</option>
+            <option>Trainer Session</option>
+          </select>
+        </span>
+        <span>
+          <label for="attStatus">Status</label>
+          <select id="attStatus">
+            <option>Present</option>
+            <option>Late</option>
+            <option>Absent</option>
+          </select>
+        </span>
+      </section>
+      <button type="submit">💾 Simpan Kehadiran</button>
+    </fieldset>
+  </form>
+
+  <section class="card" style="padding:0">
+    <section class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Tanggal</th>
+            <th>Aktivitas</th>
+            <th>Status</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="attTable"></tbody>
+      </table>
+    </section>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 FitMerge</p>
+</footer>
+
+<script src="../js/navbar.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  requireLogin();
+  renderAttendance();
+</script>
+</body>
+</html>

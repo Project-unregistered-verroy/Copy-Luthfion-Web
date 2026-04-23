@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - FitMerge</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="navbar-brand">⚡ FitMerge</a>
+  <button class="navbar-toggle" onclick="toggleNav()">☰</button>
+  <menu class="navbar-menu" id="navbarMenu">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="workout.html">Workout</a>
+    <a href="gizi.html">Gizi</a>
+    <a href="mealplan.html">Meal Plan</a>
+    <a href="trainer.html">Trainer</a>
+    <a href="attendance.html">Absensi</a>
+    <a href="payment.html">Pembayaran</a>
+    <a href="notifikasi.html">Notifikasi</a>
+    <a href="chat.html">Chat</a>
+    <a href="profile.html">Profil</a>
+    <a href="admin.html">Admin</a>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+  </menu>
+</nav>
+
+<main>
+  <header class="page-header">
+    <h1>🛡️ Admin Panel</h1>
+    <p>Monitoring seluruh aktivitas platform FitMerge.</p>
+  </header>
+
+  <section class="grid-4">
+    <article class="stat primary">
+      <p class="stat-icon">👥</p>
+      <p class="stat-value" id="adminUsers">0</p>
+      <p class="stat-label">Total User</p>
+    </article>
+    <article class="stat primary">
+      <p class="stat-icon">💰</p>
+      <p class="stat-value" id="adminRevenue">Rp 0</p>
+      <p class="stat-label">Total Revenue</p>
+    </article>
+    <article class="stat">
+      <p class="stat-icon">📋</p>
+      <p class="stat-value" id="adminAttendance">0</p>
+      <p class="stat-label">Total Absensi</p>
+    </article>
+    <article class="stat">
+      <p class="stat-icon">🏋️</p>
+      <p class="stat-value" id="adminWorkouts">0</p>
+      <p class="stat-label">Total Workout</p>
+    </article>
+  </section>
+
+  <section class="card" style="margin-top:1.5rem">
+    <h3>📊 Quick Stats</h3>
+    <section class="profile-row">
+      <span>Total Booking Trainer</span><span id="adminBookings">0</span>
+    </section>
+    <menu style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1rem">
+      <button onclick="renderAdmin()">🔄 Refresh</button>
+      <button class="btn-ghost" onclick="location.href='payment.html'">Kelola Pembayaran</button>
+      <button class="btn-ghost" onclick="location.href='attendance.html'">Kelola Absensi</button>
+    </menu>
+  </section>
+
+  <section class="card" style="padding:0;margin-top:1rem">
+    <h3 style="padding:1rem 1rem 0.5rem">📋 Data Pengguna</h3>
+    <section class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody id="adminUsersTable"></tbody>
+      </table>
+    </section>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 FitMerge</p>
+</footer>
+
+<script src="../js/navbar.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  requireLogin();
+  renderAdmin();
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat - FitMerge</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="navbar-brand">⚡ FitMerge</a>
+  <button class="navbar-toggle" onclick="toggleNav()">☰</button>
+  <menu class="navbar-menu" id="navbarMenu">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="workout.html">Workout</a>
+    <a href="gizi.html">Gizi</a>
+    <a href="mealplan.html">Meal Plan</a>
+    <a href="trainer.html">Trainer</a>
+    <a href="attendance.html">Absensi</a>
+    <a href="payment.html">Pembayaran</a>
+    <a href="notifikasi.html">Notifikasi</a>
+    <a href="chat.html">Chat</a>
+    <a href="profile.html">Profil</a>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+  </menu>
+</nav>
+
+<main>
+  <header class="page-header">
+    <h1>💬 Pusat Komunikasi</h1>
+    <p>Chat langsung dengan trainer atau admin support.</p>
+  </header>
+
+  <section class="chat-wrap">
+    <aside class="chat-list" id="chatList"></aside>
+
+    <section class="chat-main">
+      <header class="chat-header" id="chatHeader">Pilih kontak</header>
+      <section class="chat-messages" id="chatMessages"></section>
+      <form class="chat-input" onsubmit="event.preventDefault(); sendChat();">
+        <input id="chatInput" type="text" placeholder="Tulis pesan..." autocomplete="off">
+        <button type="submit">Kirim</button>
+      </form>
+    </section>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 FitMerge</p>
+</footer>
+
+<script src="../js/navbar.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  requireLogin();
+  renderContacts();
+  renderMessages();
+</script>
+</body>
+</html>

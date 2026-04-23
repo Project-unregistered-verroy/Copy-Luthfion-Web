@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator Gizi - FitMerge</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="navbar-brand">⚡ FitMerge</a>
+  <button class="navbar-toggle" onclick="toggleNav()">☰</button>
+  <menu class="navbar-menu" id="navbarMenu">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="workout.html">Workout</a>
+    <a href="gizi.html">Gizi</a>
+    <a href="mealplan.html">Meal Plan</a>
+    <a href="trainer.html">Trainer</a>
+    <a href="attendance.html">Absensi</a>
+    <a href="payment.html">Pembayaran</a>
+    <a href="notifikasi.html">Notifikasi</a>
+    <a href="chat.html">Chat</a>
+    <a href="profile.html">Profil</a>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+  </menu>
+</nav>
+
+<main>
+  <header class="page-header">
+    <h1>🧮 Kalkulator Kebutuhan Gizi Harian</h1>
+    <p>Hitung BMR, TDEE, dan distribusi makronutrien berdasarkan data tubuhmu.</p>
+  </header>
+
+  <form class="card" onsubmit="event.preventDefault(); hitungGizi();">
+    <fieldset>
+      <legend>Data Tubuh</legend>
+
+      <section class="form-row">
+        <span>
+          <label for="gBerat">Berat Badan (kg)</label>
+          <input id="gBerat" type="number" min="1" max="300" placeholder="70" required>
+        </span>
+        <span>
+          <label for="gTinggi">Tinggi Badan (cm)</label>
+          <input id="gTinggi" type="number" min="50" max="300" placeholder="170" required>
+        </span>
+      </section>
+
+      <section class="form-row">
+        <span>
+          <label for="gUsia">Usia (tahun)</label>
+          <input id="gUsia" type="number" min="1" max="120" placeholder="25" required>
+        </span>
+        <span>
+          <label for="gGender">Jenis Kelamin</label>
+          <select id="gGender">
+            <option value="laki">Laki-laki</option>
+            <option value="perempuan">Perempuan</option>
+          </select>
+        </span>
+      </section>
+
+      <label for="gAktivitas">Tingkat Aktivitas</label>
+      <select id="gAktivitas">
+        <option value="1.2">Tidak aktif (jarang olahraga)</option>
+        <option value="1.375">Aktif ringan (1-3x/minggu)</option>
+        <option value="1.55" selected>Aktif sedang (3-5x/minggu)</option>
+        <option value="1.725">Aktif tinggi (6-7x/minggu)</option>
+        <option value="1.9">Sangat aktif (2x sehari)</option>
+      </select>
+
+      <label for="gTarget">Target</label>
+      <select id="gTarget">
+        <option value="-500">Turun Berat Badan (-500 kkal)</option>
+        <option value="0" selected>Jaga Berat Badan</option>
+        <option value="300">Naik Berat Badan (+300 kkal)</option>
+      </select>
+
+      <button type="submit">🧮 Hitung Kebutuhan Gizi</button>
+    </fieldset>
+  </form>
+
+  <section id="giziResult" class="hidden" style="margin-top:1.5rem">
+    <h2>Hasil Perhitungan</h2>
+
+    <section class="grid-3">
+      <article class="stat primary">
+        <p class="stat-label">BMR</p>
+        <p class="stat-value" id="rBmr">0</p>
+        <p class="item-meta">kkal/hari</p>
+      </article>
+      <article class="stat primary">
+        <p class="stat-label">TDEE</p>
+        <p class="stat-value" id="rTdee">0</p>
+        <p class="item-meta">kkal/hari</p>
+      </article>
+      <article class="stat primary">
+        <p class="stat-label">Target Kalori</p>
+        <p class="stat-value" id="rTarget">0</p>
+        <p class="item-meta">kkal/hari</p>
+      </article>
+    </section>
+
+    <section class="card" style="margin-top:1rem">
+      <h3>🥩 Distribusi Makronutrien</h3>
+      <section class="grid-3">
+        <article class="stat">
+          <p class="stat-icon">🍚</p>
+          <p class="stat-value" id="rKarbo">0 g</p>
+          <p class="stat-label">Karbohidrat (50%)</p>
+        </article>
+        <article class="stat">
+          <p class="stat-icon">🥩</p>
+          <p class="stat-value" id="rProtein">0 g</p>
+          <p class="stat-label">Protein (30%)</p>
+        </article>
+        <article class="stat">
+          <p class="stat-icon">🥑</p>
+          <p class="stat-value" id="rLemak">0 g</p>
+          <p class="stat-label">Lemak (20%)</p>
+        </article>
+      </section>
+      <p class="msg msg-success" style="margin-top:1rem">✅ Target kalori harian ini otomatis jadi Daily Limit di Meal Plan.</p>
+    </section>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 FitMerge</p>
+</footer>
+
+<script src="../js/navbar.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  requireLogin();
+</script>
+</body>
+</html>
