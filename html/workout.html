@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workout Plan - FitMerge</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="navbar-brand">⚡ FitMerge</a>
+  <button class="navbar-toggle" onclick="toggleNav()">☰</button>
+  <menu class="navbar-menu" id="navbarMenu">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="workout.html">Workout</a>
+    <a href="gizi.html">Gizi</a>
+    <a href="mealplan.html">Meal Plan</a>
+    <a href="trainer.html">Trainer</a>
+    <a href="attendance.html">Absensi</a>
+    <a href="payment.html">Pembayaran</a>
+    <a href="notifikasi.html">Notifikasi</a>
+    <a href="chat.html">Chat</a>
+    <a href="profile.html">Profil</a>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+  </menu>
+</nav>
+
+<main>
+  <header class="page-header">
+    <h1>🏋️ Workout Plan</h1>
+    <p>🔥 DON'T GIVE UP! Push your limits and achieve your goals! 🔥</p>
+  </header>
+
+  <section class="grid-3">
+    <article class="stat">
+      <p class="stat-icon">📊</p>
+      <p class="stat-value" id="statSessions">0</p>
+      <p class="stat-label">Sesi Latihan</p>
+    </article>
+    <article class="stat">
+      <p class="stat-icon">⚖️</p>
+      <p class="stat-value" id="statWeight">0</p>
+      <p class="stat-label">Total Beban (kg)</p>
+    </article>
+    <article class="stat">
+      <p class="stat-icon">✅</p>
+      <p class="stat-value" id="statPercent">0</p>
+      <p class="stat-label">Selesai (%)</p>
+    </article>
+  </section>
+
+  <form id="workoutForm" class="card" onsubmit="event.preventDefault(); addWorkout();" style="margin-top:1.5rem">
+    <fieldset>
+      <legend>Tambah Latihan Baru</legend>
+      <section class="form-row">
+        <span>
+          <label for="wDate">Tanggal</label>
+          <input id="wDate" type="date" required>
+        </span>
+        <span>
+          <label for="wCategory">Kategori</label>
+          <select id="wCategory" required>
+            <option value="">-- Pilih --</option>
+            <option>Cardio</option>
+            <option>Strength</option>
+            <option>Flexibility</option>
+            <option>HIIT</option>
+          </select>
+        </span>
+      </section>
+
+      <label for="wName">Nama Latihan</label>
+      <input id="wName" type="text" placeholder="cth: Push Up, Squat, Bench Press" required>
+
+      <section class="form-row">
+        <span>
+          <label for="wSets">Set</label>
+          <input id="wSets" type="number" min="1" placeholder="3" required>
+        </span>
+        <span>
+          <label for="wReps">Repetisi</label>
+          <input id="wReps" type="number" min="1" placeholder="12" required>
+        </span>
+      </section>
+
+      <label for="wWeight">Beban (kg) - opsional</label>
+      <input id="wWeight" type="number" min="0" placeholder="20">
+
+      <button type="submit">+ Tambahkan Latihan</button>
+    </fieldset>
+  </form>
+
+  <section class="card">
+    <h2>Daftar Latihan</h2>
+    <ul id="workoutList" class="item-list"></ul>
+    <menu style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.75rem">
+      <button onclick="exportWorkoutsCSV()">📥 Unduh CSV</button>
+      <button class="btn-danger" onclick="clearWorkouts()">🗑️ Hapus Semua</button>
+    </menu>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 FitMerge</p>
+</footer>
+
+<script src="../js/navbar.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  requireLogin();
+  renderWorkouts();
+</script>
+</body>
+</html>
