@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil - FitMerge</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="navbar-brand">⚡ FitMerge</a>
+  <button class="navbar-toggle" onclick="toggleNav()">☰</button>
+  <menu class="navbar-menu" id="navbarMenu">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="workout.html">Workout</a>
+    <a href="gizi.html">Gizi</a>
+    <a href="mealplan.html">Meal Plan</a>
+    <a href="trainer.html">Trainer</a>
+    <a href="attendance.html">Absensi</a>
+    <a href="payment.html">Pembayaran</a>
+    <a href="notifikasi.html">Notifikasi</a>
+    <a href="chat.html">Chat</a>
+    <a href="profile.html">Profil</a>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+  </menu>
+</nav>
+
+<main>
+  <header class="page-header">
+    <h1>👤 Profil Pengguna</h1>
+    <p>Kelola data akun dan preferensimu.</p>
+  </header>
+
+  <section class="grid-2">
+    <article class="card" style="text-align:center">
+      <p class="avatar-circle" id="profileAvatar">U</p>
+      <h3 id="profileName">User</h3>
+      <p class="badge badge-green" id="profileRole">member</p>
+
+      <dl style="margin-top:1.5rem;text-align:left">
+        <section class="profile-row">
+          <span>Email</span><span id="profileEmail">-</span>
+        </section>
+        <section class="profile-row">
+          <span>Username</span><span id="profileUsername">-</span>
+        </section>
+        <section class="profile-row">
+          <span>Status</span><span style="color:var(--success)">● Aktif</span>
+        </section>
+      </dl>
+    </article>
+
+    <form id="profileForm" class="card" onsubmit="event.preventDefault(); saveProfile();">
+      <fieldset>
+        <legend>Ubah Data Diri</legend>
+
+        <label for="editName">Nama Lengkap</label>
+        <input id="editName" type="text" placeholder="Nama lengkap">
+
+        <label for="editEmail">Email <small>(tidak bisa diubah)</small></label>
+        <input id="editEmail" type="email" readonly>
+
+        <label for="editPass">Password Baru</label>
+        <input id="editPass" type="password" placeholder="Kosongkan jika tidak ingin ganti">
+
+        <button type="submit" class="btn-full">💾 Simpan Perubahan</button>
+      </fieldset>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 FitMerge</p>
+</footer>
+
+<script src="../js/navbar.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  requireLogin();
+  renderProfile();
+</script>
+</body>
+</html>

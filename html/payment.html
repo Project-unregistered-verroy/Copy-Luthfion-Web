@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pembayaran - FitMerge</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="navbar-brand">⚡ FitMerge</a>
+  <button class="navbar-toggle" onclick="toggleNav()">☰</button>
+  <menu class="navbar-menu" id="navbarMenu">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="workout.html">Workout</a>
+    <a href="gizi.html">Gizi</a>
+    <a href="mealplan.html">Meal Plan</a>
+    <a href="trainer.html">Trainer</a>
+    <a href="attendance.html">Absensi</a>
+    <a href="payment.html">Pembayaran</a>
+    <a href="notifikasi.html">Notifikasi</a>
+    <a href="chat.html">Chat</a>
+    <a href="profile.html">Profil</a>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+  </menu>
+</nav>
+
+<main>
+  <header class="page-header">
+    <h1>💳 Manajemen Pembayaran</h1>
+    <p>Catat membership, sewa trainer, rental alat, dan transaksi lainnya.</p>
+  </header>
+
+  <section class="grid-3">
+    <article class="stat primary">
+      <p class="stat-icon">💰</p>
+      <p class="stat-value" id="totalPaid">Rp 0</p>
+      <p class="stat-label">Total Lunas</p>
+    </article>
+    <article class="stat">
+      <p class="stat-icon">⏳</p>
+      <p class="stat-value" id="totalPending">0</p>
+      <p class="stat-label">Pending</p>
+    </article>
+    <article class="stat">
+      <p class="stat-icon">❌</p>
+      <p class="stat-value" id="totalUnpaid">0</p>
+      <p class="stat-label">Unpaid</p>
+    </article>
+  </section>
+
+  <form id="payForm" class="card" onsubmit="event.preventDefault(); savePayment();" style="margin-top:1.5rem">
+    <fieldset>
+      <legend>Tambah Transaksi</legend>
+      <section class="form-row">
+        <span>
+          <label for="payName">Nama Member</label>
+          <input id="payName" type="text" placeholder="Nama member" required>
+        </span>
+        <span>
+          <label for="payCategory">Kategori</label>
+          <select id="payCategory">
+            <option>Membership New</option>
+            <option>Membership Renewal</option>
+            <option>Trainer Rental</option>
+            <option>Equipment Rental</option>
+            <option>Other</option>
+          </select>
+        </span>
+      </section>
+      <section class="form-row">
+        <span>
+          <label for="payAmount">Jumlah (Rp)</label>
+          <input id="payAmount" type="number" min="0" placeholder="175000" required>
+        </span>
+        <span>
+          <label for="payDate">Tanggal</label>
+          <input id="payDate" type="date" required>
+        </span>
+      </section>
+      <section class="form-row">
+        <span>
+          <label for="payMethod">Metode</label>
+          <select id="payMethod">
+            <option>Transfer Bank</option>
+            <option>QRIS</option>
+            <option>E-Wallet</option>
+            <option>Cash</option>
+          </select>
+        </span>
+        <span>
+          <label for="payStatus">Status</label>
+          <select id="payStatus">
+            <option>Paid</option>
+            <option>Pending</option>
+            <option>Unpaid</option>
+          </select>
+        </span>
+      </section>
+      <button type="submit">💾 Simpan Pembayaran</button>
+    </fieldset>
+  </form>
+
+  <section class="card" style="padding:0">
+    <section class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Member</th>
+            <th>Kategori</th>
+            <th>Jumlah</th>
+            <th>Tanggal</th>
+            <th>Metode</th>
+            <th>Status</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="payTable"></tbody>
+      </table>
+    </section>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 FitMerge</p>
+</footer>
+
+<script src="../js/navbar.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  requireLogin();
+  renderPayments();
+</script>
+</body>
+</html>

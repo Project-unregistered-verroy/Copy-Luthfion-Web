@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - FitMerge</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="navbar-brand">⚡ FitMerge</a>
+  <button class="navbar-toggle" onclick="toggleNav()">☰</button>
+  <menu class="navbar-menu" id="navbarMenu">
+    <a href="../index.html">Beranda</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Daftar</a>
+  </menu>
+</nav>
+
+<section class="auth-wrap">
+  <article class="auth-card">
+    <h1>Masuk ke Akun</h1>
+    <p class="auth-sub">Selamat datang kembali!</p>
+
+    <form onsubmit="event.preventDefault(); doLogin();">
+      <fieldset>
+        <legend>Kredensial</legend>
+        <label for="loginId">Username / Email</label>
+        <input id="loginId" type="text" placeholder="admin / admin@fit.com" autocomplete="username" required>
+
+        <label for="loginPass">Password</label>
+        <input id="loginPass" type="password" placeholder="Masukkan password" autocomplete="current-password" required>
+      </fieldset>
+
+      <p id="loginError" class="msg msg-error hidden"></p>
+
+      <button type="submit" class="btn-full">Sign In</button>
+    </form>
+
+    <p style="text-align:center;margin-top:1rem;font-size:0.88rem;color:var(--muted)">
+      Belum punya akun? <a href="register.html"><strong>Daftar Sekarang</strong></a>
+    </p>
+
+    <p style="text-align:center;margin-top:0.75rem;font-size:0.78rem;color:var(--muted);border-top:1px solid var(--border);padding-top:0.75rem">
+      Demo: <code>admin/123</code> · <code>trainer/123</code> · <code>member/123</code>
+    </p>
+  </article>
+</section>
+
+<script src="../js/navbar.js"></script>
+<script src="../js/auth.js"></script>
+</body>
+</html>

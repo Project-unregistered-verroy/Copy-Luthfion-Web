@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meal Plan - FitMerge</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="navbar-brand">⚡ FitMerge</a>
+  <button class="navbar-toggle" onclick="toggleNav()">☰</button>
+  <menu class="navbar-menu" id="navbarMenu">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="workout.html">Workout</a>
+    <a href="gizi.html">Gizi</a>
+    <a href="mealplan.html">Meal Plan</a>
+    <a href="trainer.html">Trainer</a>
+    <a href="attendance.html">Absensi</a>
+    <a href="payment.html">Pembayaran</a>
+    <a href="notifikasi.html">Notifikasi</a>
+    <a href="chat.html">Chat</a>
+    <a href="profile.html">Profil</a>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+  </menu>
+</nav>
+
+<main>
+  <header class="page-header">
+    <h1>🍽️ Meal Plan</h1>
+    <p>Catat makanan harian dan pantau kalori terhadap target-mu.</p>
+  </header>
+
+  <section class="grid-3">
+    <article class="stat primary">
+      <p class="stat-icon">🎯</p>
+      <p class="stat-value" id="mealLimit">0</p>
+      <p class="stat-label">Daily Limit</p>
+    </article>
+    <article class="stat">
+      <p class="stat-icon">🍴</p>
+      <p class="stat-value" id="mealConsumed">0</p>
+      <p class="stat-label">Kalori Terkonsumsi</p>
+    </article>
+    <article class="stat">
+      <p class="stat-icon">✅</p>
+      <p class="stat-value" id="mealRemaining">0</p>
+      <p class="stat-label">Sisa Kalori</p>
+    </article>
+  </section>
+
+  <section class="card" style="margin-top:1rem">
+    <h3>Progress Harian</h3>
+    <section class="progress">
+      <span class="progress-fill" id="mealProgress" style="display:block;width:0%"></span>
+    </section>
+    <p class="item-meta">Set kebutuhan harianmu di <a href="gizi.html">Kalkulator Gizi</a></p>
+  </section>
+
+  <form id="mealForm" class="card" onsubmit="event.preventDefault(); addFood();">
+    <fieldset>
+      <legend>Catat Makanan</legend>
+      <label for="fName">Nama Makanan</label>
+      <input id="fName" type="text" placeholder="cth: Nasi Goreng, Ayam Bakar" required>
+
+      <label for="fCal">Kalori (kkal)</label>
+      <input id="fCal" type="number" min="1" placeholder="350" required>
+
+      <button type="submit">+ Tambah Makanan</button>
+    </fieldset>
+  </form>
+
+  <section class="card">
+    <h3>🗒️ Log Hari Ini</h3>
+    <ul id="foodList" class="item-list"></ul>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 FitMerge</p>
+</footer>
+
+<script src="../js/navbar.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  requireLogin();
+  renderFoodLog();
+</script>
+</body>
+</html>
